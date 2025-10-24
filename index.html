@@ -144,9 +144,41 @@
   </main>
 
   <footer>صُنِع بحب لخدمة المجتمع 💚</footer>
+<!-- هنا نحط الكود الجديد قبل الفوتر -->
+<!-- تسجيل الدخول المجهول -->
+<section class="card" style="margin:20px 0">
+  <button id="btnAnonSignIn" class="btn">تسجيل دخول سريع</button>
+  <small id="formMsg" class="muted" style="margin-right:10px"></small>
+</section>
+
+<!-- نموذج إضافة مشاركة -->
+<section class="card">
+  <h3>أضف مشاركة جديدة</h3>
+  <form id="postForm">
+    <input id="title" required placeholder="العنوان (إجباري)">
+    <input id="city" placeholder="المدينة (اختياري)">
+    <textarea id="description" rows="3" placeholder="الوصف (اختياري)" style="width:100%;margin-top:10px;"></textarea>
+    <button type="submit" class="btn" style="margin-top:10px;">نشر</button>
+  </form>
+</section>
+
+<!-- عرض المشاركات -->
+<section class="card">
+  <h3>قائمة المشاركات</h3>
+  <div id="emptyState" class="muted">لا توجد مشاركات بعد.</div>
+  <div id="posts" style="display:grid;gap:10px;grid-template-columns:1fr 1fr"></div>
+</section>
+
+<!-- الفوتر -->
+<footer>© 2025 تعاون وشارك الخير</footer>
+<script type="module" src="app.js"></script>
+</body>
+</html>
+  
 <footer>© 2025 تعاون وشارك الخير</footer>
 <!-- ✅ هذا السطر هو الصحيح -->
 <script type="module" src="app.js"></script>
 
 </body>
 </html>
+
