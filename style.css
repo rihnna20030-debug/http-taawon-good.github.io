@@ -1,135 +1,117 @@
-/* 🌟 إعداد الخط */
-body {
-  font-family: "Tajawal", sans-serif;
-  background: #f6f8fa;
-  margin: 0;
-  padding: 0;
-  color: #222;
+/* ===== ألوان وخط مريحة ===== */
+:root{
+  --bg:#f7fafc;         /* خلفية عامة */
+  --ink:#1f2937;        /* نص رئيسي */
+  --muted:#6b7280;      /* نص ثانوي */
+  --panel:#ffffff;      /* بطاقات */
+  --border:#e5e7eb;     /* حدود لطيفة */
+  --brand:#22c55e;      /* أخضر أساسي */
+  --brand-ink:#16a34a;  /* أخضر أدكن */
+  --accent:#38bdf8;     /* أزرق للسهوه */
+  --glow: 0 10px 30px rgba(56,189,248,.15);
+  --shadow: 0 10px 28px rgba(17,24,39,.08);
 }
 
-/* 🟦 رأس الصفحة (الهيدر) */
-.hero {
-  background: linear-gradient(135deg, #4caf50, #81c784);
-  color: white;
-  padding: 20px 0;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+*{box-sizing:border-box}
+html,body{
+  margin:0;padding:0;background:var(--bg);color:var(--ink);
+  font-family:"Tajawal",system-ui,Arial
 }
 
-.hero .container {
-  width: 90%;
-  max-width: 800px;
-  margin: auto;
+/* حبيبات هادئة للخلفية */
+body{
+  background-image:
+    radial-gradient(12px 12px at 20% 10%, rgba(56,189,248,.10) 0, transparent 60%),
+    radial-gradient(12px 12px at 80% 0%, rgba(34,197,94,.10) 0, transparent 60%),
+    linear-gradient(#ffffff,#f7fafc);
 }
 
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 15px;
+.container{max-width:980px;margin:0 auto;padding:16px}
+
+/* ===== الهيدر (فاتح ومريح) ===== */
+.hero{
+  background:
+    radial-gradient(600px 220px at 90% -10%, rgba(56,189,248,.18) 0, transparent 60%),
+    radial-gradient(500px 220px at -10% -10%, rgba(34,197,94,.16) 0, transparent 60%),
+    #fff;
+  border-bottom:1px solid var(--border);
+}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{
+  width:46px;height:46px;border-radius:12px;color:#fff;font-weight:800;
+  display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--brand),var(--brand-ink));
+  box-shadow:var(--glow)
+}
+h1{margin:0 0 2px;font-size:28px}
+.subtitle{margin:0;color:var(--muted)}
+.notice{
+  margin-top:12px;padding:10px 12px;border:1px dashed var(--border);
+  border-radius:12px;background:#ffffffa0;color:var(--muted)
 }
 
-.logo {
-  background: white;
-  color: #4caf50;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  font-weight: bold;
-  font-size: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* ===== بطاقات ===== */
+.card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:16px;margin-top:16px;
+  box-shadow:var(--shadow);
+}
+.card-title{margin:0 0 10px}
+
+/* ===== أزرار بحركة نعومة ===== */
+.btn{
+  padding:10px 14px;border-radius:12px;border:1px solid #d1d5db;
+  background:var(--brand);color:#fff;font-weight:700;cursor:pointer;
+  transition:filter .18s ease, transform .06s ease, box-shadow .18s ease;
+  box-shadow: 0 4px 14px rgba(34,197,94,.18);
+}
+.btn:hover{filter:brightness(1.05)}
+.btn:active{transform:translateY(1px)}
+.btn.glow:hover{box-shadow:0 8px 24px rgba(34,197,94,.25)}
+
+/* ===== حقول ونموذج ===== */
+label{display:block;font-weight:600}
+input,textarea,select{
+  width:100%;padding:12px;margin-top:6px;border-radius:12px;
+  border:1px solid var(--border);background:#fff;color:var(--ink)
+}
+textarea{resize:vertical}
+.form-grid{display:grid;gap:12px;grid-template-columns:1fr 1fr}
+@media(max-width:720px){.form-grid{grid-template-columns:1fr}}
+.actions{margin-top:12px}
+
+/* ===== شبكة المشاركات ===== */
+.posts{display:grid;gap:14px;grid-template-columns:1fr 1fr}
+@media(max-width:900px){.posts{grid-template-columns:1fr}}
+
+.post{
+  background:#fff;border:1px solid var(--border);border-radius:14px;padding:14px;
+  box-shadow:var(--shadow);
+  transform:translateY(4px);opacity:0;
+  animation:fadeUp .45s ease forwards;  /* تظهر بنعومة */
+}
+.post:hover{transform:translateY(-1px); transition: transform .12s ease}
+.post h4{margin:6px 0 6px}
+.meta{font-size:13px;color:var(--muted)}
+
+/* رأس البطاقة: الشارة + الوقت */
+.post-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+
+.badge{
+  display:inline-block;padding:5px 10px;border-radius:999px;font-size:12px;font-weight:700;
+  border:1px solid #e5e7eb;background:#fff;color:#111
+}
+.badge.green{ background:#e8f8ef;border-color:#c7f0d9;color:#167c43 }
+.badge.yellow{ background:#fff7e6;border-color:#fde1a8;color:#8a5b00 }
+.badge.blue{ background:#eaf4ff;border-color:#cfe6ff;color:#0b63a8 }
+
+.footer{
+  color:var(--muted);margin:26px 0;border-top:1px solid var(--border);padding-top:12px;text-align:center
 }
 
-.subtitle {
-  font-size: 14px;
-  opacity: 0.9;
-}
-
-.notice {
-  margin-top: 10px;
-  background: rgba(255,255,255,0.2);
-  padding: 8px;
-  border-radius: 8px;
-  font-size: 13px;
-}
-
-/* 💬 البطاقات */
-.card {
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  padding: 20px;
-  margin: 20px auto;
-  width: 90%;
-  max-width: 800px;
-}
-
-.card-title {
-  margin-top: 0;
-  border-right: 5px solid #4caf50;
-  padding-right: 10px;
-  color: #333;
-}
-
-/* 🧾 النماذج */
-input, textarea {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  font-family: inherit;
-  margin-top: 5px;
-}
-
-button, .btn {
-  background: #4caf50;
-  border: none;
-  color: white;
-  padding: 10px 18px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: 0.3s;
-  font-size: 15px;
-}
-
-button:hover, .btn:hover {
-  background: #388e3c;
-}
-
-/* 🧱 المشاركات */
-.posts {
-  display: grid;
-  gap: 15px;
-  margin-top: 10px;
-}
-
-.posts .card {
-  border-left: 4px solid #4caf50;
-}
-
-/* 🔸 النصوص */
-.muted {
-  color: #777;
-  font-size: 13px;
-}
-
-/* 🦶 التذييل */
-.footer {
-  text-align: center;
-  padding: 15px;
-  font-size: 13px;
-  color: #555;
-  margin-top: 40px;
-  border-top: 1px solid #ddd;
-}
-
-/* 📱 للجوال */
-@media (max-width: 600px) {
-  .brand {
-    flex-direction: column;
-    text-align: center;
-  }
-  .logo {
-    margin-bottom: 10px;
-  }
+/* ===== حركات/أنيميشن ===== */
+@keyframes fadeUp{
+  to { transform:translateY(0); opacity:1; }
 }
