@@ -1,184 +1,79 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>تعاون وشارك الخير 🤝</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>تعاون وشارك الخير</title>
+
+  <!-- خط عربي جميل -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- التنسيقات -->
   <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="منصة بسيطة لمشاركة التبرعات وطلبات المساعدة والفعاليات">
 </head>
 <body>
-  <header class="container">
-    <div class="brand">
-      <div class="logo">ت</div>
-      <div>
-        <h1>تعاون وشارك الخير</h1>
-        <small>شارك أشياءك الزائدة، ساعد غيرك، وشارك في الفعاليات</small>
+
+  <!-- شريط علوي جذاب -->
+  <header class="hero">
+    <div class="container">
+      <div class="brand">
+        <div class="logo">خ</div>
+        <div>
+          <h1>تعاون وشارك الخير</h1>
+          <p class="subtitle">انشر تبرعك أو طلبك، وخلي الخير يوصل أسرع ✨</p>
+        </div>
+      </div>
+      <div class="notice">
+        لاحظ: الرجاء عدم إدخال بيانات شخصية حساسة. الموقع للتجربة التعليمية.
       </div>
     </div>
-    <nav class="tabs">
-      <button class="active" data-tab="home">🏠 الرئيسية</button>
-      <button data-tab="share">🎁 شارك خيرك</button>
-      <button data-tab="help">🤝 ساعد غيرك</button>
-      <button data-tab="events">🌍 الفعاليات</button>
-      <button data-tab="profile">👤 ملفي</button>
-    </nav>
   </header>
 
   <main class="container">
-    <!-- HOME -->
-    <section id="home" class="tab card">
-      <div class="bar">
-        <input id="q" type="search" placeholder="ابحث بعنوان أو وصف…" />
-        <select id="typeFilter">
-          <option value="">كل الأنواع</option>
-          <option value="donation">تبرعات</option>
-          <option value="help">طلبات مساعدة</option>
-          <option value="event">فعاليات</option>
-        </select>
-        <select id="cityFilter">
-          <option value="">كل المدن</option>
-        </select>
-        <button id="clearFilters" class="btn">مسح</button>
+    <!-- تسجيل الدخول المجهول -->
+    <section class="card">
+      <div class="flex">
+        <button id="btnAnonSignIn" class="btn">تسجيل دخول سريع (مجهول)</button>
+        <small id="formMsg" class="muted"></small>
       </div>
-      <div id="feed" class="grid"></div>
-      <div id="emptyFeed" class="empty hidden">لا توجد مشاركات مطابقة الآن.</div>
     </section>
 
-    <!-- SHARE (Donation) -->
-    <section id="share" class="tab card hidden">
-      <h3>أضف تبرعك 🎁</h3>
-      <div class="grid">
-        <label>العنوان
-          <input id="shareTitle" type="text" placeholder="مثال: ملابس أطفال نظيفة" />
-        </label>
-        <label>الوصف
-          <textarea id="shareDesc" placeholder="الحالة/العدد/المقاس…"></textarea>
-        </label>
-        <div class="row2">
+    <!-- إضافة مشاركة -->
+    <section class="card">
+      <h2 class="card-title">أضف مشاركة</h2>
+      <form id="postForm">
+        <div class="form-grid">
+          <label>العنوان (إجباري)
+            <input id="title" required placeholder="مثال: تبرع بملابس أطفال">
+          </label>
           <label>المدينة
-            <input id="shareCity" list="cities" placeholder="الرياض، الدمام، الأحساء…" />
-          </label>
-          <label>الفئة
-            <select id="shareCategory">
-              <option value="" selected disabled>اختر الفئة</option>
-              <option>ملابس</option><option>كتب</option><option>أثاث</option><option>أجهزة</option><option>أخرى</option>
-            </select>
+            <input id="city" placeholder="مثال: الدمام / الخبر">
           </label>
         </div>
-        <label>الصورة (اختياري)
-          <input id="shareImage" type="file" accept="image/*" />
-        </label>
-        <img id="sharePreview" class="thumb hidden" alt="معاينة" />
-        <div class="actions">
-          <button id="shareSubmit" class="btn brand">نشر</button>
-          <button id="shareReset" class="btn ghost">مسح</button>
-        </div>
-        <div id="shareMsg" class="hint"></div>
-      </div>
-    </section>
-
-    <!-- HELP (Request) -->
-    <section id="help" class="tab card hidden">
-      <h3>أضف طلب مساعدة 🤝</h3>
-      <div class="grid">
-        <label>العنوان
-          <input id="helpTitle" type="text" placeholder="مثال: أحتاج حقيبة مدرسية" />
-        </label>
-        <label>الوصف
-          <textarea id="helpDesc" placeholder="اشرح احتياجك بإيجاز واحترام"></textarea>
-        </label>
-        <label>المدينة
-          <input id="helpCity" list="cities" placeholder="المدينة" />
+        <label style="display:block;margin-top:12px">الوصف
+          <textarea id="description" rows="3" placeholder="تفاصيل مختصرة…"></textarea>
         </label>
         <div class="actions">
-          <button id="helpSubmit" class="btn brand">نشر الطلب</button>
-          <button id="helpReset" class="btn ghost">مسح</button>
+          <button type="submit" class="btn">نشر المشاركة</button>
         </div>
-        <div id="helpMsg" class="hint"></div>
-      </div>
+      </form>
     </section>
 
-    <!-- EVENTS -->
-    <section id="events" class="tab card hidden">
-      <h3>أضف فعالية تطوع 🌍</h3>
-      <div class="grid">
-        <label>العنوان
-          <input id="eventTitle" type="text" placeholder="مثال: تنظيف حديقة الحي" />
-        </label>
-        <label>الوصف
-          <textarea id="eventDesc" placeholder="الوقت/المكان/المتطلبات…"></textarea>
-        </label>
-        <div class="row2">
-          <label>المدينة
-            <input id="eventCity" list="cities" placeholder="المدينة" />
-          </label>
-          <label>التاريخ
-            <input id="eventDate" type="date" />
-          </label>
-        </div>
-        <div class="actions">
-          <button id="eventSubmit" class="btn brand">نشر الفعالية</button>
-          <button id="eventReset" class="btn ghost">مسح</button>
-        </div>
-        <div id="eventMsg" class="hint"></div>
-      </div>
+    <!-- المشاركات -->
+    <section class="card">
+      <h2 class="card-title">المشاركات الأخيرة</h2>
+      <div id="emptyState" class="muted">لا توجد مشاركات بعد — كن أول من يضيف 🌟</div>
+      <div id="posts" class="posts"></div>
     </section>
-
-    <!-- PROFILE -->
-    <section id="profile" class="tab card hidden">
-      <h3>ملفي 👤</h3>
-      <div class="stats">
-        <div class="stat"><div id="statDonations">0</div><small>تبرعات</small></div>
-        <div class="stat"><div id="statHelps">0</div><small>طلبات مساعدة</small></div>
-        <div class="stat"><div id="statEvents">0</div><small>فعاليات</small></div>
-      </div>
-      <div class="hr"></div>
-      <h4 style="margin:12px 0 8px">مشاركاتي</h4>
-      <div id="mine" class="grid"></div>
-      <div class="hr"></div>
-      <button id="wipe" class="btn danger">حذف كل البيانات (على هذا الجهاز فقط)</button>
-      <p class="hint">هذا نموذج بدون خادم (Backend). البيانات محفوظة محليًا في المتصفح عبر <code>localStorage</code>.</p>
-    </section>
-
-    <datalist id="cities"></datalist>
   </main>
 
-  <footer>صُنِع بحب لخدمة المجتمع 💚</footer>
-<!-- هنا نحط الكود الجديد قبل الفوتر -->
-<!-- تسجيل الدخول المجهول -->
-<section class="card" style="margin:20px 0">
-  <button id="btnAnonSignIn" class="btn">تسجيل دخول سريع</button>
-  <small id="formMsg" class="muted" style="margin-right:10px"></small>
-</section>
+  <footer class="container footer">
+    © 2025 — تعاون وشارك الخير
+  </footer>
 
-<!-- نموذج إضافة مشاركة -->
-<section class="card">
-  <h3>أضف مشاركة جديدة</h3>
-  <form id="postForm">
-    <input id="title" required placeholder="العنوان (إجباري)">
-    <input id="city" placeholder="المدينة (اختياري)">
-    <textarea id="description" rows="3" placeholder="الوصف (اختياري)" style="width:100%;margin-top:10px;"></textarea>
-    <button type="submit" class="btn" style="margin-top:10px;">نشر</button>
-  </form>
-</section>
-
-<!-- عرض المشاركات -->
-<section class="card">
-  <h3>قائمة المشاركات</h3>
-  <div id="emptyState" class="muted">لا توجد مشاركات بعد.</div>
-  <div id="posts" style="display:grid;gap:10px;grid-template-columns:1fr 1fr"></div>
-</section>
-
-<!-- الفوتر -->
-<footer>© 2025 تعاون وشارك الخير</footer>
-<script type="module" src="app.js"></script>
+  <!-- ربط جافاسكربت (يستخدم imports لذلك لازم module) -->
+  <script type="module" src="app.js"></script>
 </body>
 </html>
-  
-<footer>© 2025 تعاون وشارك الخير</footer>
-<!-- ✅ هذا السطر هو الصحيح -->
-<script type="module" src="app.js"></script>
-
-</body>
-</html>
-
